@@ -8,30 +8,98 @@ class UserProfile extends StatelessWidget {
     // TODO: implement build
     return Scaffold(
       appBar: AppBar(
-        title: Text('Setting'),
+        title: const Text(
+          'Setting',
+          style: TextStyle(color: Colors.white),
+        ),
         backgroundColor: Colors.blue,
       ),
       body: Container(
         width: double.infinity,
-        child: Column(
+        child: const Column(
+          mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Container(width: 100, height: 100, child: Placeholder()),
             SizedBox(
-              height: 3,
+              height: 30,
             ),
-            Text('Nickname'),
+            _AvatarWidget(),
             SizedBox(
-              height: 5,
+              height: 30,
             ),
-            Text('+7 900 123 23 45'),
+            _UserNameWidget(),
             SizedBox(
-              height: 5,
+              height: 10,
             ),
-            Text('@Denup'),
+            _UserPhoneWidget(),
+            SizedBox(
+              height: 10,
+            ),
+            _UserNickNameWidget(),
           ],
         ),
       ),
     );
+  }
+}
+
+class _UserNickNameWidget extends StatelessWidget {
+  const _UserNickNameWidget({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return const Text(
+      '@Denup',
+      style: TextStyle(
+        color: Colors.grey,
+        fontSize: 18,
+      ),
+    );
+  }
+}
+
+class _UserPhoneWidget extends StatelessWidget {
+  const _UserPhoneWidget({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return const Text(
+      '+7 900 123 23 45',
+      style: TextStyle(
+        color: Colors.grey,
+        fontSize: 15,
+      ),
+    );
+    ;
+  }
+}
+
+class _UserNameWidget extends StatelessWidget {
+  const _UserNameWidget({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return const Text(
+      'Nickname',
+      style: TextStyle(
+          color: Colors.black, fontSize: 25, fontWeight: FontWeight.w600),
+    );
+  }
+}
+
+class _AvatarWidget extends StatelessWidget {
+  const _AvatarWidget({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(width: 100, height: 100, child: Placeholder());
   }
 }
