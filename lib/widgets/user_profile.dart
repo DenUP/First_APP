@@ -41,21 +41,23 @@ class _MenuWidget extends StatelessWidget {
     return Container(
         color: Colors.white,
         width: double.infinity,
-        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-        child: Column(children: [
-          Row(
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              Icon(Icons.favorite),
-              SizedBox(
-                width: 10,
-              ),
-              Text('Избранное'),
-              Spacer(),
-              Icon(Icons.chevron_right)
-            ],
-          )
-        ]));
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+          child: Column(children: [
+            Row(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                Icon(Icons.favorite),
+                SizedBox(
+                  width: 10,
+                ),
+                Text('Избранное'),
+                Spacer(),
+                Icon(Icons.chevron_right)
+              ],
+            )
+          ]),
+        ));
   }
 }
 
