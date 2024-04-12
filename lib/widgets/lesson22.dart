@@ -1,40 +1,60 @@
 import 'package:flutter/material.dart';
 
+class ToText {
+  final String title;
+  final String description;
+
+  ToText({required this.title, required this.description});
+}
+
+final List<ToText> AllUser = [
+  ToText(title: 'Nasya', description: 'Girl'),
+  ToText(title: 'Den', description: 'Boy'),
+  ToText(title: 'Lera', description: 'Girl'),
+  ToText(title: 'Maksim', description: 'Boy'),
+];
+
+final List<Widget> AllUserData =
+    AllUser.map((ToText name) => RowText_Widget(title: name)).toList();
+
 class AllUserProfile extends StatelessWidget {
   const AllUserProfile({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final List<String> ListUsers = ['Оля', 'Петя', 'Nasya', 'Олег'];
-
-    final List<Widget> ListUserData =
-        ListUsers.map((String user) => TextWidget(name: user)).toList();
-
     return Scaffold(
       backgroundColor: Colors.white,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: ListUserData,
+          children: AllUserData,
         ),
       ),
     );
   }
 }
 
-class TextWidget extends StatelessWidget {
-  final String name;
-
-  const TextWidget({
+class RowText_Widget extends StatelessWidget {
+  final ToText title;
+  const RowText_Widget({
     super.key,
-    required this.name,
+    required this.title,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      name,
-      style: TextStyle(fontSize: 35),
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text(
+          title.title,
+          style: TextStyle(color: Colors.amber),
+        ),
+        SizedBox(
+          width: 10,
+        ),
+        Text(title.description),
+      ],
     );
   }
 }

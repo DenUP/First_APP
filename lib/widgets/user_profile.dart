@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:lessons_1/widgets/Menu_row_widgets.dart';
 
 class UserProfile extends StatelessWidget {
@@ -17,19 +18,28 @@ class UserProfile extends StatelessWidget {
         ),
         backgroundColor: Colors.blue,
       ),
-      body: Container(
-        width: double.infinity,
-        child: const Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            _UserInfo(),
-            SizedBox(
-              height: 15,
+      body: ListView(
+        children: [
+          Container(
+            width: double.infinity,
+            child: const Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                _UserInfo(),
+                SizedBox(
+                  height: 15,
+                ),
+                _MenuWidget(),
+                SizedBox(
+                  height: 10,
+                ),
+                _MenuWidget(),
+                _MenuWidget(),
+              ],
             ),
-            _MenuWidget()
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -70,29 +80,43 @@ class _UserInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      color: Colors.white,
-      child: Column(
-        children: [
-          SizedBox(
-            height: 30,
+    return Stack(
+      children: [
+        Container(
+          width: double.infinity,
+          color: Colors.white,
+          child: const Column(
+            children: [
+              SizedBox(
+                height: 30,
+              ),
+              _AvatarWidget(),
+              SizedBox(
+                height: 30,
+              ),
+              _UserNameWidget(),
+              SizedBox(
+                height: 10,
+              ),
+              _UserPhoneWidget(),
+              SizedBox(
+                height: 10,
+              ),
+              _UserNickNameWidget(),
+            ],
           ),
-          _AvatarWidget(),
-          SizedBox(
-            height: 30,
-          ),
-          _UserNameWidget(),
-          SizedBox(
-            height: 10,
-          ),
-          _UserPhoneWidget(),
-          SizedBox(
-            height: 10,
-          ),
-          _UserNickNameWidget(),
-        ],
-      ),
+        ),
+        const Positioned(
+            top: 25,
+            right: 25,
+            child: Text(
+              'Изм.',
+              style: TextStyle(
+                color: Colors.blue,
+                fontSize: 18,
+              ),
+            ))
+      ],
     );
   }
 }
