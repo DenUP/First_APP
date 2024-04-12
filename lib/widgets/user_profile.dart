@@ -53,24 +53,20 @@ class _MenuWidget extends StatelessWidget {
     return Container(
         color: Colors.white,
         width: double.infinity,
-        // padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-        child: const Column(children: [
-          MenuRowWidget(
-            icon: Icons.favorite_border,
-            text: 'Избранное',
-          ),
-          MenuRowWidget(
-            icon: Icons.computer,
-            text: 'Устройства',
-          ),
-          MenuRowWidget(
-            icon: Icons.call,
-            text: 'Звонки',
-          ),
-          MenuRowWidget(
-            icon: Icons.contact_emergency_sharp,
-            text: 'Контакты',
-          ),
+        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+        child: Column(children: [
+          Row(
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              Icon(Icons.favorite),
+              SizedBox(
+                width: 10,
+              ),
+              Text('Избранное'),
+              Spacer(),
+              Icon(Icons.chevron_right)
+            ],
+          )
         ]));
   }
 }
