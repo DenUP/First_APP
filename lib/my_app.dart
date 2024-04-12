@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:lessons_1/Onboarding1.dart';
-import 'package:lessons_1/profile.dart';
-import 'package:lessons_1/widgets/lesson22.dart';
-import 'package:lessons_1/widgets/lesson23.dart';
-import 'package:lessons_1/widgets/lessons29.dart';
-import 'package:lessons_1/widgets/user_profile.dart';
+import 'package:lessons_1/start_lesson/widgets/Onboarding1.dart';
+import 'package:lessons_1/start_lesson/widgets/profile.dart';
+import 'package:lessons_1/start_lesson/widgets/lesson22.dart';
+import 'package:lessons_1/start_lesson/widgets/lesson23.dart';
+import 'package:lessons_1/start_lesson/widgets/lessons29.dart';
+import 'package:lessons_1/start_lesson/widgets/user_profile.dart';
 
 class App extends StatelessWidget {
   const App({super.key});

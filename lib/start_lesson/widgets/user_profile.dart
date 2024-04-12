@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:lessons_1/widgets/Menu_row_widgets.dart';
+import 'package:lessons_1/start_lesson/widgets/Menu_row_widgets.dart';
 
 class UserProfile extends StatelessWidget {
   const UserProfile({super.key});

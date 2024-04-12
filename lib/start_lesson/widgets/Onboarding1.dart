@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lessons_1/widgets/text_onboarding.dart';
+import 'package:lessons_1/start_lesson/widgets/text_onboarding.dart';
 
 class OnBoardingOne extends StatelessWidget {
   const OnBoardingOne({super.key});
