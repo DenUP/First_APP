@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lessons_1/widgets/Menu_row_widgets.dart';
 
 class UserProfile extends StatelessWidget {
   const UserProfile({super.key});
@@ -9,6 +10,7 @@ class UserProfile extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.grey,
       appBar: AppBar(
+        centerTitle: true,
         title: const Text(
           'Setting',
           style: TextStyle(color: Colors.white),
@@ -23,7 +25,7 @@ class UserProfile extends StatelessWidget {
           children: [
             _UserInfo(),
             SizedBox(
-              height: 30,
+              height: 15,
             ),
             _MenuWidget()
           ],
@@ -41,20 +43,24 @@ class _MenuWidget extends StatelessWidget {
     return Container(
         color: Colors.white,
         width: double.infinity,
-        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-        child: Column(children: [
-          Row(
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              Icon(Icons.favorite),
-              SizedBox(
-                width: 10,
-              ),
-              Text('Избранное'),
-              Spacer(),
-              Icon(Icons.chevron_right)
-            ],
-          )
+        // padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+        child: const Column(children: [
+          MenuRowWidget(
+            icon: Icons.favorite_border,
+            text: 'Избранное',
+          ),
+          MenuRowWidget(
+            icon: Icons.computer,
+            text: 'Устройства',
+          ),
+          MenuRowWidget(
+            icon: Icons.call,
+            text: 'Звонки',
+          ),
+          MenuRowWidget(
+            icon: Icons.contact_emergency_sharp,
+            text: 'Контакты',
+          ),
         ]));
   }
 }
