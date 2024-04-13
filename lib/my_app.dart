@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lessons_1/lessons_48/InheritedModel.dart';
+import 'package:lessons_1/lessons_48/calcul.dart';
 import 'package:lessons_1/lessons_48/inherited_pass.dart';
 import 'package:lessons_1/start_lesson/widgets/Onboarding1.dart';
 import 'package:lessons_1/start_lesson/widgets/profile.dart';
@@ -14,6 +15,6 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return MaterialApp(debugShowCheckedModeBanner: false, home: ExampleModel());
+    return MaterialApp(debugShowCheckedModeBanner: false, home: ExampleCal());
   }
 }
