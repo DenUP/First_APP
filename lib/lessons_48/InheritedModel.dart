@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-class Example extends StatelessWidget {
+class ExampleModel extends StatelessWidget {
   // Сам экран
-  const Example({super.key});
+  const ExampleModel({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,10 +20,16 @@ class DataOwnerStatefull extends StatefulWidget {
 }
 
 class _DataOwnerStatefullState extends State<DataOwnerStatefull> {
-  var _value = 0;
+  var _valueOne = 0;
+  var _valueTwo = 0;
 
-  void _increment() {
-    _value += 1;
+  void _incrementOne() {
+    _valueOne += 1;
+    setState(() {});
+  }
+
+  void _incrementTwo() {
+    _valueTwo += 1;
     setState(() {});
   }
 
@@ -33,11 +39,16 @@ class _DataOwnerStatefullState extends State<DataOwnerStatefull> {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         ElevatedButton(
-          onPressed: _increment,
-          child: const Text('Жми'),
+          onPressed: _incrementOne,
+          child: const Text('Баттон 1'),
+        ),
+        ElevatedButton(
+          onPressed: _incrementTwo,
+          child: const Text('Баттон 2'),
         ),
         DataProviderInherited(
-          value: _value,
+          valueOne: _valueOne,
+          valueTwo: _valueTwo,
           child: const DataConsumerStateless(),
         )
       ],
@@ -53,8 +64,9 @@ class DataConsumerStateless extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final value = context
-            .dependOnInheritedWidgetOfExactType<DataProviderInherited>()
-            ?.value ??
+            .dependOnInheritedWidgetOfExactType<DataProviderInherited>(
+                aspect: 1)
+            ?.valueOne ??
         0;
     // context.findAncestorStateOfType<_DataOwnerStatefullState>()?._value ??
     //     0;
@@ -80,7 +92,11 @@ class DataConsumerStatefull extends StatefulWidget {
 class _DataConsumerStatefullState extends State<DataConsumerStatefull> {
   @override
   Widget build(BuildContext context) {
-    final value = getInherit<DataProviderInherited>(context)?.value;
+    final value = context
+            .dependOnInheritedWidgetOfExactType<DataProviderInherited>(
+                aspect: 2)
+            ?.valueTwo ??
+        0;
 
     return Text('$value');
   }
@@ -101,11 +117,13 @@ T? getInherit<T>(BuildContext context) {
 
 // Добавление Инхерита, чтобы обновлялось число
 
-class DataProviderInherited extends InheritedWidget {
-  final int value;
+class DataProviderInherited extends InheritedModel {
+  final int valueOne;
+  final int valueTwo;
 
   const DataProviderInherited({
-    required this.value,
+    required this.valueTwo,
+    required this.valueOne,
     super.key,
     required super.child,
   });
@@ -113,6 +131,18 @@ class DataProviderInherited extends InheritedWidget {
   @override
   bool updateShouldNotify(DataProviderInherited oldWidget) {
     // TODO: implement updateShouldNotify
-    return value != oldWidget.value;
+    return valueOne != oldWidget.valueOne || valueTwo != oldWidget.valueTwo;
+  }
+
+  @override
+  bool updateShouldNotifyDependent(
+    covariant DataProviderInherited oldWidget,
+    Set aspects,
+  ) {
+    final isValueOneUpdate =
+        valueOne != oldWidget.valueOne && aspects.contains(1);
+    final isValueTwoUpdate =
+        valueTwo != oldWidget.valueTwo && aspects.contains(2);
+    return isValueOneUpdate || isValueTwoUpdate;
   }
 }
