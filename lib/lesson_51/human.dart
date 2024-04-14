@@ -1,9 +1,16 @@
 import 'dart:ffi';
 
 import 'package:flutter/foundation.dart';
+import 'package:json_annotation/json_annotation.dart';
 import 'package:lessons_1/lesson_51/address.dart';
 
+part 'human.g.dart';
+
+// dart run build_runner build --delete-conflicting-outputs -запускГенерацииКода
+
+@JsonSerializable()
 class Human {
+  @JsonKey(name: 'firestName')
   String name;
   String surname;
   int age;
@@ -15,22 +22,6 @@ class Human {
       required this.age,
       required this.address});
 
-  factory Human.fromJson(Map<String, dynamic> json) {
-    return Human(
-        name: json['name'] as String,
-        surname: json['surname'] as String,
-        age: json['age'] as int,
-        address: (json['address'] as List<dynamic>)
-            .map((dynamic e) => Address.fromJson(e as Map<String, dynamic>))
-            .toList());
-  }
-
-  Map<String, dynamic> toJson() {
-    return <String, dynamic>{
-      'name': name,
-      'surname': surname,
-      'age': age,
-      'address': address.map((e) => e.toJson()).toList(),
-    };
-  }
+  factory Human.fromJson(Map<String, dynamic> json) => _$HumanFromJson(json);
+  Map<String, dynamic> toJson() => _$HumanToJson(this);
 }

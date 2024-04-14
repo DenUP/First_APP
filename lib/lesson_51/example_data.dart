@@ -4,7 +4,7 @@ import 'package:lessons_1/lesson_51/human.dart';
 var jsonString = '''
 [
   {
-    "name": "Denis",
+    "firestName": "Denis",
     "surname": "Vladimirovich",
     "age": 25,
     "adress": [
