@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lessons_1/lesson_51/json.dart';
 import 'package:lessons_1/lessons_48/InheritedModel.dart';
 import 'package:lessons_1/lessons_48/calcul.dart';
 import 'package:lessons_1/lessons_48/inherited_pass.dart';
@@ -15,6 +16,6 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return MaterialApp(debugShowCheckedModeBanner: false, home: ExampleCal());
+    return MaterialApp(debugShowCheckedModeBanner: false, home: JsonExample());
   }
 }
