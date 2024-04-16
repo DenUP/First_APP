@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:lessons_1/lessons_52/widgets/example/example_model.dart';
 
-class Exmaple extends StatefulWidget {
-  const Exmaple({super.key});
+class Example extends StatefulWidget {
+  const Example({super.key});
 
   @override
-  State<Exmaple> createState() => _ExmapleState();
+  State<Example> createState() => _ExampleState();
 }
 
-class _ExmapleState extends State<Exmaple> {
+class _ExampleState extends State<Example> {
   final model = ExampleWidgetModel();
   @override
   Widget build(BuildContext context) {
@@ -80,7 +80,11 @@ class _PostRowWidget extends StatelessWidget {
     final post = ExampleModelProvider.read(context)!.model.post[index];
     return Column(
       children: [
-        Text(post.id.toString()),
+        Text(
+          post.id.toString(),
+          textAlign: TextAlign.end,
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
         const SizedBox(
           height: 10,
         ),
@@ -88,7 +92,10 @@ class _PostRowWidget extends StatelessWidget {
         const SizedBox(
           height: 10,
         ),
-        Text(post.body),
+        Text(
+          post.body,
+          textAlign: TextAlign.left,
+        ),
         const SizedBox(
           height: 10,
         ),

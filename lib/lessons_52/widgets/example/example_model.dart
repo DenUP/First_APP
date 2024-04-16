@@ -1,20 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:lessons_1/lessons_52/domain/api_clients/api_clients.dart';
 import 'package:lessons_1/lessons_52/domain/entity/post.dart';
 
 class ExampleWidgetModel extends ChangeNotifier {
-  final _posts = <Post>[];
+  final apiClient = ApiClient();
+  var _posts = <Post>[];
   List<Post> get post => _posts;
 
-  void reloadPosts() {}
+  Future<void> reloadPosts() async {
+    final post = await apiClient.getPost();
+    _posts += post;
+    notifyListeners();
+  }
 
-  void createPost() {}
+  Future<void> createPost() async {
+    final post = await apiClient.post(
+      title: 'fgdsfgds',
+      body: 'Привет!',
+    );
+  }
 }
 
 class ExampleModelProvider extends InheritedNotifier {
   final ExampleWidgetModel model;
   const ExampleModelProvider(
       {super.key, required this.model, required Widget child})
-      : super(child: child);
+      : super(notifier: model, child: child);
 
   static ExampleModelProvider? wath(BuildContext context) {
     return context.dependOnInheritedWidgetOfExactType<ExampleModelProvider>();
