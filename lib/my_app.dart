@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:lessons_1/lessons_48/inherited_pass.dart';
 import 'package:lessons_1/lessons_52/widgets/example/example.dart';
 
 class App extends StatelessWidget {
