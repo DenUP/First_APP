@@ -4,22 +4,26 @@ import 'package:lessons_1/lessons_52/domain/entity/post.dart';
 class ExampleWidgetModel extends ChangeNotifier {
   final _posts = <Post>[];
   List<Post> get post => _posts;
+
+  void reloadPosts() {}
+
+  void createPost() {}
 }
 
-class ExampleWidgetProvider extends InheritedNotifier {
+class ExampleModelProvider extends InheritedNotifier {
   final ExampleWidgetModel model;
-  const ExampleWidgetProvider(
+  const ExampleModelProvider(
       {super.key, required this.model, required Widget child})
       : super(child: child);
 
-  static ExampleWidgetProvider? wath(BuildContext context) {
-    return context.dependOnInheritedWidgetOfExactType<ExampleWidgetProvider>();
+  static ExampleModelProvider? wath(BuildContext context) {
+    return context.dependOnInheritedWidgetOfExactType<ExampleModelProvider>();
   }
 
-  static ExampleWidgetProvider? read(BuildContext context) {
+  static ExampleModelProvider? read(BuildContext context) {
     final widget = context
-        .getElementForInheritedWidgetOfExactType<ExampleWidgetProvider>()
+        .getElementForInheritedWidgetOfExactType<ExampleModelProvider>()
         ?.widget;
-    return widget is ExampleWidgetProvider ? widget : null;
+    return widget is ExampleModelProvider ? widget : null;
   }
 }
