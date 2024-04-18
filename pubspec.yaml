@@ -37,6 +37,8 @@ dependencies:
   cupertino_icons: ^1.0.6
   supabase_flutter: ^2.3.4
   json_annotation: ^4.8.1
+  shared_preferences: ^2.2.3
+  flutter_secure_storage: ^9.0.0
 
 dev_dependencies:
   flutter_test:

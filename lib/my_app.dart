@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lessons_1/lessons_53/presentation/main.dart';
+import 'package:lessons_1/lessons_54/widget/key_widget.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -7,6 +7,7 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return MaterialApp(debugShowCheckedModeBanner: false, home: FileMain());
+    return MaterialApp(
+        debugShowCheckedModeBanner: false, home: ExampleWidgetKey());
   }
 }
