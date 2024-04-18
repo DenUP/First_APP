@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lessons_1/lessons_52/widgets/example/example.dart';
+import 'package:lessons_1/lessons_53/presentation/main.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -7,6 +7,6 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return MaterialApp(debugShowCheckedModeBanner: false, home: Example());
+    return MaterialApp(debugShowCheckedModeBanner: false, home: FileMain());
   }
 }

@@ -30,6 +30,8 @@ class ApiClient {
     final json = jsonDecode(jsonString) as Map<String, dynamic>;
     final post = Post.fromJson(json);
     return post;
+
+    
   }
 
   Future<List<dynamic>> get(String urli) async {
