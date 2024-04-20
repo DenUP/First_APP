@@ -1,59 +1,45 @@
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
+part 'hive_model.g.dart';
+
 class HiveWidgetModel {
   void doSome() async {
-    if (!Hive.isAdapterRegistered(0)) {
-      Hive.registerAdapter(UserAdapter());
-    }
-    var box = await Hive.openBox<User>('testBox');
-
-    // box.put('names', "123454");
-    // box.put('age', 25);
-    // box.add('keyboard');
-    // final boxDel = await box.deleteAt(3);
-    // final delValue = await box.delete(1);
-    // box.add(User(name: 'Denis', age: 25));
-    // final user = User('Names', 222);
-    // final user_ad = box.add(user);
-
-    // final user = User('Ivan', 54);
-    // await box.add(user);
-
-    // await box.put('123455', User('nameee', 22));
-    // await box.add(User('Deis', 220));
-    final userFromBox = box.getAt(0);
-    print(box.keys);
-
-    print(userFromBox);
-    // box.close();
+    var box = await Hive.openBox<User>('testBoxing');
+    await box.add(User('Denis', 26, 'Vladimirovich'));
+    print(box.values);
   }
 }
 
+@HiveType(typeId: 0)
 class User {
-  String name;
-  int age;
+  @HiveField(0)
+  String? name;
+  @HiveField(1)
+  String? surname;
+  @HiveField(2)
+  int? age;
 
-  User(this.name, this.age);
+  User(this.name, this.age, this.surname);
 
   @override
-  String toString() => 'name: $name, age: $age';
+  String toString() => 'name: $name, age: $age, surname: $surname';
 }
 
-class UserAdapter extends TypeAdapter<User> {
-  @override
-  final typeId = 0;
+// class UserAdapter extends TypeAdapter<User> {
+//   @override
+//   final typeId = 0;
 
-  @override
-  User read(BinaryReader reader) {
-    final name = reader.readString();
-    final age = reader.readInt();
-    return User(name, age);
-  }
+//   @override
+//   User read(BinaryReader reader) {
+//     final name = reader.readString();
+//     final age = reader.readInt();
+//     return User(name, age);
+//   }
 
-  @override
-  void write(BinaryWriter writer, User obj) {
-    writer.writeString(obj.name);
-    writer.writeInt(obj.age);
-  }
-}
+//   @override
+//   void write(BinaryWriter writer, User obj) {
+//     writer.writeString(obj.name);
+//     writer.writeInt(obj.age);
+//   }
+// }
