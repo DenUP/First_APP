@@ -7,6 +7,7 @@ void main() async {
   WidgetsFlutterBinding
       .ensureInitialized(); // чтобы добавить канал для вызова асинхронной функции снизу
   Hive.registerAdapter(UserAdapter());
+  Hive.registerAdapter(PetAdapter()); 
   await Hive.initFlutter();
   return runApp(const App());
 }

@@ -5,27 +5,61 @@ part 'hive_model.g.dart';
 
 class HiveWidgetModel {
   void doSome() async {
+    if (!Hive.isAdapterRegistered(0)) {
+      Hive.registerAdapter(UserAdapter());
+    }
+    if (!Hive.isAdapterRegistered(1)) {
+      Hive.registerAdapter(PetAdapter());
+    }
     var box = await Hive.openBox<User>('testBoxing');
-    await box.add(User('Denis', 26, 'Vladimirovich'));
-    print(box.values);
+    var petBox = await Hive.openBox<Pet>('petBox');
+    // var user = User('Denis', 267, 'Vladimirovich');
+    // var user = box.get('Den');
+    // user?.age = 25;
+    // user?.save();
+    // await user?.delete();
+    // final pet = Pet('Баллу');
+    // // petBox.add(pet);
+    // final pets = HiveList(petBox, objects: [pet]);
+    var user = box.get('User');
+    // box.put('User', user);
+    final petq = user?.Pet?[0];
+    // var pets = box.add
+    // await box.put('Den', user);
+    print(petq);
   }
 }
 
 @HiveType(typeId: 0)
-class User {
+class User extends HiveObject {
   @HiveField(0)
   String? name;
   @HiveField(1)
   String? surname;
   @HiveField(2)
   int? age;
+  @HiveField(3)
+  HiveList? Pet;
 
-  User(this.name, this.age, this.surname);
+  User(this.name, this.age, this.surname, this.Pet);
 
   @override
-  String toString() => 'name: $name, age: $age, surname: $surname';
+  String toString() =>
+      'name: $name, age: $age, surname: $surname, pet: ${Pet?.map((dynamic e) => e)},';
 }
 
+@HiveType(typeId: 1)
+class Pet extends HiveObject {
+  @HiveField(0)
+  String? name;
+
+  Pet(
+    this.name,
+  );
+
+  @override
+  String toString() => 'name: $name';
+}
 // class UserAdapter extends TypeAdapter<User> {
 //   @override
 //   final typeId = 0;
