@@ -6,12 +6,12 @@ part 'hive_model.g.dart';
 class HiveWidgetModel {
   void doSome() async {
     if (!Hive.isAdapterRegistered(0)) {
-      Hive.registerAdapter(UserAdapter());
+      Hive.registerAdapter(UserRAdapter());
     }
     if (!Hive.isAdapterRegistered(1)) {
       Hive.registerAdapter(PetAdapter());
     }
-    var box = await Hive.openBox<User>('testBoxing');
+    var box = await Hive.openBox<UserR>('testBoxing');
     var petBox = await Hive.openBox<Pet>('petBox');
     // var user = User('Denis', 267, 'Vladimirovich');
     // var user = box.get('Den');
@@ -31,7 +31,7 @@ class HiveWidgetModel {
 }
 
 @HiveType(typeId: 0)
-class User extends HiveObject {
+class UserR extends HiveObject {
   @HiveField(0)
   String? name;
   @HiveField(1)
@@ -41,7 +41,7 @@ class User extends HiveObject {
   @HiveField(3)
   HiveList? Pet;
 
-  User(this.name, this.age, this.surname, this.Pet);
+  UserR(this.name, this.age, this.surname, this.Pet);
 
   @override
   String toString() =>
