@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 
 class GroupsWidget extends StatelessWidget {
   const GroupsWidget({super.key});
@@ -14,7 +15,10 @@ class GroupsWidget extends StatelessWidget {
           style: TextStyle(color: Colors.white),
         ),
       ),
-      body: _GroupsListWidget(),
+      body: Padding(
+        padding: const EdgeInsets.only(top: 5),
+        child: _GroupsListWidget(),
+      ),
       floatingActionButton:
           FloatingActionButton(onPressed: () {}, child: Icon(Icons.add)),
     );
@@ -44,8 +48,28 @@ class _GroupsListRowWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      title: Text('Text $indexList'),
+    return Slidable(
+      endActionPane: const ActionPane(
+        motion: BehindMotion(),
+        children: [
+          SlidableAction(
+            // An action can be bigger than the others.
+            flex: 1,
+            onPressed: null,
+            backgroundColor: Color(0xFFFE4A49),
+            foregroundColor: Colors.white,
+            icon: Icons.delete,
+            label: 'Delete',
+          ),
+        ],
+      ),
+      child: ColoredBox(
+        color: Colors.white,
+        child: ListTile(
+          onTap: () {},
+          title: Text('Text $indexList'),
+        ),
+      ),
     );
   }
 }
