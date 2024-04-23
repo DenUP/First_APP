@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 
-class GroupFormWidgetModel {}
+class GroupFormWidgetModel {
+  String groupName = '';
+  void saveGroup(BuildContext context) {
+    print(groupName);
+  }
+}
 
 class GroupFormWidgetModelProvider extends InheritedNotifier {
   final GroupFormWidgetModel model;

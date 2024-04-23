@@ -45,7 +45,9 @@ class _GroupFormWidgetBody extends StatelessWidget {
         ),
       )),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () => GroupFormWidgetModelProvider.read(context)
+            ?.model
+            .saveGroup(context),
         child: const Icon(Icons.done),
       ),
     );
@@ -58,7 +60,12 @@ class GroupNameWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final model = GroupFormWidgetModelProvider.read(context)?.model;
     return TextField(
+      onChanged: (value) => model?.groupName = value,
+      onEditingComplete: () {
+        return model?.saveGroup(context);
+      },
       autofocus: true,
       decoration: InputDecoration(
           border: OutlineInputBorder(), hintText: 'Введите категорию'),
