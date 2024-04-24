@@ -1,13 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:lessons_1/lessons_57/widgets/groups/groups_widget_model.dart';
 
-class GroupsWidget extends StatelessWidget {
+class GroupsWidget extends StatefulWidget {
   const GroupsWidget({super.key});
 
-  void showFrom(BuildContext context) {
-    // function for navigation //
-    Navigator.of(context).pushNamed('/groups/form');
+  @override
+  State<GroupsWidget> createState() => _GroupsWidgetState();
+}
+
+class _GroupsWidgetState extends State<GroupsWidget> {
+  final _model = GroupWidgetModel();
+
+  @override
+  Widget build(BuildContext context) {
+    return GroupWidgetProvider(
+      model: _model,
+      child: const _GroupWidgetBody(),
+    );
   }
+}
+
+class _GroupWidgetBody extends StatelessWidget {
+  const _GroupWidgetBody({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -25,10 +40,12 @@ class GroupsWidget extends StatelessWidget {
         child: _GroupsListWidget(),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => showFrom(context),
-        child: Icon(Icons.add),
+        onPressed: () =>
+            GroupWidgetProvider.read(context)?.model.showFrom(context),
+        child: const Icon(Icons.add),
       ),
     );
+    ;
   }
 }
 
@@ -37,6 +54,8 @@ class _GroupsListWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final groupsCount =
+        GroupWidgetProvider.watch(context)?.model.groups.length ?? 0;
     return ListView.separated(
       itemBuilder: (context, index) {
         return _GroupsListRowWidget(indexList: index);
@@ -44,7 +63,7 @@ class _GroupsListWidget extends StatelessWidget {
       separatorBuilder: (context, index) {
         return const Divider();
       },
-      itemCount: 50,
+      itemCount: groupsCount,
     );
   }
 }
@@ -55,9 +74,11 @@ class _GroupsListRowWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final model = GroupWidgetProvider.read(context)!.model;
+    final group = model.groups[indexList];
     return Slidable(
       endActionPane: const ActionPane(
-        motion: BehindMotion(),
+        motion:  BehindMotion(),
         children: [
           SlidableAction(
             // An action can be bigger than the others.
@@ -74,7 +95,7 @@ class _GroupsListRowWidget extends StatelessWidget {
         color: Colors.white,
         child: ListTile(
           onTap: () {},
-          title: Text('Text $indexList'),
+          title: Text(group.name),
         ),
       ),
     );

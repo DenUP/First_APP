@@ -1,9 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:lessons_1/lessons_57/domain/entity/group.dart';
 
 class GroupFormWidgetModel {
   String groupName = '';
-  void saveGroup(BuildContext context) {
-    print(groupName);
+  void saveGroup(BuildContext context) async {
+    if (groupName == '') return;
+    if (!Hive.isAdapterRegistered(1)) {
+      Hive.registerAdapter(GroupAdapter());
+    }
+    final box = await Hive.openBox<Group>('group');
+    final group = Group(name: groupName);
+    await box.add(group);
+    Navigator.of(context).pop();
   }
 }
 
